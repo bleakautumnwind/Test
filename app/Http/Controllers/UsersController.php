@@ -18,6 +18,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::paginate(10);
+//        dd(123);
         return view('users.index',compact('users'));
     }
 
@@ -28,9 +29,9 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-//        dd($user);
-
-        return view('users.show', compact('user'));
+//        dd(123);
+        $statuses = $user->statuses()->orderBy('created_at','desc')->paginate(30);
+        return view('users.show', compact('user','statuses'));
     }
 
     //注册
